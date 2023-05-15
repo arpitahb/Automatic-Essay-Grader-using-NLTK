@@ -40,3 +40,4 @@ pip install nltk
 pip install gensim
 pip install scikit-learn
 ```
+We use the [training_set_rel3.tsv]()
