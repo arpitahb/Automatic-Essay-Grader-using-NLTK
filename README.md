@@ -1,6 +1,8 @@
 # Automatic-Essay-Grader-using-NLTK
  ## Table of Content
  + [Dataset Explaing](#data)
+ + [Preprocessing](#prep)
+ + [Building Model](#build)
  
  ## Dataset Explaining <a name="data"></a>
  
@@ -31,7 +33,7 @@ Score Point 3: Errors are occasional and often of the first draft variety.They h
 
 Score Point 4: There are no errors that impacts the flow of communication
 
-## Preprocessing
+## Preprocessing <a name="prep"></a>
  ### Dependencies needed
 ```
 pip install numpy
@@ -77,7 +79,7 @@ def remove_puncs(essay):
    ```  
    3. Once the dataframe is cleaned, the next step is to extract the features from the essays.
    The features that we have extracted are :
-   1. Number of words in a essay 
+   * Number of words in a essay 
    ```  
    def noOfWords(essay):
     count=0
@@ -85,7 +87,7 @@ def remove_puncs(essay):
         count=count+len(i)
     return count
  ```
- 2. Number of characters in a essay:
+ * Number of characters in a essay:
   ```
   def noOfChar(essay):
     count=0
@@ -94,17 +96,17 @@ def remove_puncs(essay):
             count=count+len(j)
     return count
   ```
-  3. The average word length in a essay:
+  * The average word length in a essay:
   ```
   def avg_word_len(essay):
     return noOfChar(essay)/noOfWords(essay)
   ```
-  4. The number os sentences in anessay
+ * The number os sentences in anessay
   ```
   def noOfSent(essay):
     return len(essay2word(essay))
   ```
-  5. The number of verbs, nouns, adjectives and adverbs in an essay
+ * The number of verbs, nouns, adjectives and adverbs in an essay
   ```
   def count_pos(essay):
     sentences = essay2word(essay)
@@ -126,7 +128,7 @@ def remove_puncs(essay):
                 adverb_count+=1
     return noun_count,verb_count,adj_count,adverb_count
   ```
-  6. The number of spelling errors in an essay
+  * The number of spelling errors in an essay
   ```
   data = open(r'C:\Users\JEC\Desktop\6th Semester\big.txt').read()
 words = re.findall('[a-z]+', data.lower())
@@ -142,8 +144,24 @@ def check_spell_error(essay):
             count+=1
     return count
   ```
-  7. the average sentence length in an essay
+  * the average sentence length in an essay
    ```
    def avg_sent_len(essay):
     return noOfWords(essay)/noOfSent(essay)
   ```
+  4. We create a csv file by applying the feature extracting functions to the dataframe
+   ```
+   dat=df.copy()
+   dat["wordcount"]= dat["essay"].apply(noOfWords)
+dat["charcount"]= dat["essay"].apply(noOfChar)
+dat["avglen"]= dat["essay"].apply(avg_word_len)
+dat["sentencecount"]= dat["essay"].apply(noOfSent)
+dat["spellerror"]= dat["essay"].apply(check_spell_error)
+dat["avg_sent"]=dat["essay"].apply(avg_sent_len)
+dat['noun_count'], dat['adj_count'], dat['verb_count'], dat['adv_count'] = zip(*dat['essay'].map(count_pos))
+dat.to_csv("processed_data.csv")
+   
+    ```
+  The csv file is saved as Processed_data.csv
+  
+  ##Building Model <a name = "build"></a>
