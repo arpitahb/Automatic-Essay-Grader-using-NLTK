@@ -75,3 +75,75 @@ def remove_puncs(essay):
             x.append(i)
     return ' '.join(x)
    ```  
+   3. Once the dataframe is cleaned, the next step is to extract the features from the essays.
+   The features that we have extracted are :
+   1. Number of words in a essay 
+   ```  
+   def noOfWords(essay):
+    count=0
+    for i in essay2word(essay):
+        count=count+len(i)
+    return count
+ ```
+ 2. Number of characters in a essay:
+  ```
+  def noOfChar(essay):
+    count=0
+    for i in essay2word(essay):
+        for j in i:
+            count=count+len(j)
+    return count
+  ```
+  3. The average word length in a essay:
+  ```
+  def avg_word_len(essay):
+    return noOfChar(essay)/noOfWords(essay)
+  ```
+  4. The number os sentences in anessay
+  ```
+  def noOfSent(essay):
+    return len(essay2word(essay))
+  ```
+  5. The number of verbs, nouns, adjectives and adverbs in an essay
+  ```
+  def count_pos(essay):
+    sentences = essay2word(essay)
+    noun_count=0
+    adj_count=0
+    verb_count=0
+    adverb_count=0
+    for i in sentences:
+        pos_sentence = nltk.pos_tag(i)
+        for j in pos_sentence:
+            pos_tag = j[1]
+            if(pos_tag[0]=='N'):
+                noun_count+=1
+            elif(pos_tag[0]=='V'):
+                verb_count+=1
+            elif(pos_tag[0]=='J'):
+                adj_count+=1
+            elif(pos_tag[0]=='R'):
+                adverb_count+=1
+    return noun_count,verb_count,adj_count,adverb_count
+  ```
+  6. The number of spelling errors in an essay
+  ```
+  data = open(r'C:\Users\JEC\Desktop\6th Semester\big.txt').read()
+words = re.findall('[a-z]+', data.lower())
+
+def check_spell_error(essay):
+    essay=essay.lower()
+    new_essay = re.sub("[^A-Za-z0-9]"," ",essay)
+    new_essay = re.sub("[0-9]","",new_essay)
+    count=0
+    all_words = new_essay.split()
+    for i in all_words:
+        if i not in words:
+            count+=1
+    return count
+  ```
+  7. the average sentence length in an essay
+   ```
+   def avg_sent_len(essay):
+    return noOfWords(essay)/noOfSent(essay)
+  ```
