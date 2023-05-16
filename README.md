@@ -39,7 +39,6 @@ Score Point 4: There are no errors that impacts the flow of communication
 pip install numpy
 pip install pandas
 pip install nltk
-pip install gensim
 pip install scikit-learn
 ```
 1. We first load the [training_set_rel3.tsv](Dataset/training_set_rel3.tsv) using pandas library. The columns containing null values are dropped and the dataset is cleaned to contain columns : essay_id, essay_set, essay, domain_score
@@ -165,3 +164,19 @@ dat.to_csv("processed_data.csv")
  The csv file is saved as Processed_data.csv
   
   ## Building Model <a name = "build"></a>
+  
+  ### Dependencies
+   ```
+   pip install numpy
+   pip install pandas
+   pip install gensim
+   pip install keras
+   pip install scikit-learn
+   ```
+   1. We load the dataset "training_set_rel3.tsv" and the csv file we created after preprocessing the dataset, "Processed_data.csv". Adding the domain_score column from the Processed_data to our dataset, we created X set and Y set  where Y constituted of all the cells in the "domain_score" column and X constituted of the dataframe excluding the "domain_score" column
+   2. The training set and testing set are built from the X and Y set using code 
+    ```
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42
+  ```
+  The train_test_split function splits the dataset into random train and test sets.
+  3. The essays in the set X_train and X_test are converted to lists.
