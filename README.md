@@ -179,4 +179,34 @@ dat.to_csv("processed_data.csv")
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42
   ```
   The train_test_split function splits the dataset into random train and test sets.
-  3. The essays in the set X_train and X_test are converted to lists.
+  3. The essays in the set X_train and X_test are converted to lists and each essay in the list is further converted to lists comprising of split words.
+  4. This list of words is fed to a word2vec model which converts it to vectors using code 
+  ```
+  def makeVec(words, model, num_features):
+    vec = np.zeros((num_features,),dtype="float32")
+    noOfWords = 0.
+    index2word_set = set(model.wv.index_to_key)   #new attribute index_to_key
+    for i in words:
+        if i in index2word_set:
+            noOfWords += 1
+            vec = np.add(vec,model.wv[i])   #word fetch in model
+            np.seterr(invalid='ignore')
+
+    vec = np.divide(vec,noOfWords)
+    return vec
+  ```
+ 5. The vectors are added to list "training_vectors" and "testing_vectors". Since the LSTM model takes input having 3 dimensions, we convert our input by reshaping it to 3 dimensions
+ ```
+ training_vectors = np.array(training_vectors)
+testing_vectors = np.array(testing_vectors)
+
+# Reshaping train and test vectors to 3 dimensions. (1 represnts one timestep)
+training_vectors = np.reshape(training_vectors, (training_vectors.shape[0], 1, training_vectors.shape[1]))
+testing_vectors = np.reshape(testing_vectors, (testing_vectors.shape[0], 1, testing_vectors.shape[1]))
+lstm_model = get_model()
+ ```
+ 6. Our LSTM model has 4 layers: LSTM, LSTM_1, Dropout and Dense. We feed this model our training set and train it using code
+ ```
+ lstm_model.fit(training_vectors, y_train, batch_size=40, epochs=50)
+ ```
+ Once our model is trained, we save it in a H5 file.
