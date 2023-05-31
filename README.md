@@ -210,8 +210,8 @@ lstm_model = get_model()
  ```
  lstm_model.fit(training_vectors, y_train, batch_size=40, epochs=50)
  ```
- Once our model is trained, we save it in a H5 file.
-
+  Once our model is trained, we save it in a H5 file.
+```
 ## Test Lambda Function<a name="test"></a>
  
  ### Dependencies
@@ -236,17 +236,15 @@ lstm_model = get_model()
  from keras import backend as K
 ```
 
-###Lambda Function
+### Lambda Function
 ```
 def lambda_handler(event, context):
-
     try:
         result = convertToVec(event['body'])
         return {
             'statusCode': 200,
             'body': json.dumps({'SCORE': result})
             # 'headers': {'Content-Type': 'application/json'}
-
         }
     except Exception as e:
         return {
@@ -254,6 +252,6 @@ def lambda_handler(event, context):
             'body': json.dumps({'error': str(e)})
         }
 ```
-
 1. app.py file shows the lambda function 'lambda_handler' that'll execute the model file 'word2vec.bin' and 'final_model.h5'.
 2. The test handler file handler.py will import the event.json for the input and the app.py for the lambda function. This is the main test function which you need to run in your platform. The essay you'll input can be editted in the event.json.
+```
