@@ -111,16 +111,7 @@ def lambda_handler(event, context):
             'body': json.dumps({'error': str(e)})
         }
 
-# app = Flask(__name__)
 
-
-# @app.route('/', methods=['POST'])
-# def create_task():
-#     K.clear_session()
-#     final_text = request.get_json("text")["text"]
-#     score = convertToVec(final_text)
-#     K.clear_session()
-#     return jsonify({'score': score}), 201
 
 
 # if __name__ == '__main__':
