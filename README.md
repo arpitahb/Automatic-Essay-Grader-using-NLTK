@@ -211,8 +211,8 @@ lstm_model = get_model()
  lstm_model.fit(training_vectors, y_train, batch_size=40, epochs=50)
  ```
  Once our model is trained, we save it in a H5 file.
- 
- ## Test Lambda Function<a name="test"></a>
+
+## Test Lambda Function<a name="test"></a>
  
  ### Dependencies
  You need the pip install all the files mentioned earlier for the model
