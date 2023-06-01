@@ -3,6 +3,7 @@
  + [Dataset Explaing](#data)
  + [Preprocessing](#prep)
  + [Building Model](#build)
+ + [Test the Lambda Function](#test)
  
  ## Dataset Explaining <a name="data"></a>
  
@@ -209,4 +210,48 @@ lstm_model = get_model()
  ```
  lstm_model.fit(training_vectors, y_train, batch_size=40, epochs=50)
  ```
- Once our model is trained, we save it in a H5 file.
+  Once our model is trained, we save it in a H5 file.
+```
+## Test Lambda Function<a name="test"></a>
+ 
+ ### Dependencies
+ You need the pip install all the files mentioned earlier for the model
+```
+ import json
+ import site
+ import numpy as np
+ import pandas as pd
+ import nltk
+ import re
+ from nltk.corpus import stopwords
+ from nltk.tokenize import sent_tokenize, word_tokenize
+ import gensim.models.word2vec
+ from keras.layers import Embedding, LSTM, Dense, Dropout, Lambda, Flatten
+ from keras.models import Sequential, load_model, model_from_config
+ import keras.backend as K
+ from sklearn.model_selection import train_test_split
+ from sklearn.metrics import mean_squared_error
+ from sklearn.metrics import cohen_kappa_score
+ from gensim.models.keyedvectors import KeyedVectors
+ from keras import backend as K
+```
+
+### Lambda Function
+```
+def lambda_handler(event, context):
+    try:
+        result = convertToVec(event['body'])
+        return {
+            'statusCode': 200,
+            'body': json.dumps({'SCORE': result})
+            # 'headers': {'Content-Type': 'application/json'}
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': json.dumps({'error': str(e)})
+        }
+```
+1. app.py file shows the lambda function 'lambda_handler' that'll execute the model file 'word2vec.bin' and 'final_model.h5'.
+2. The test handler file handler.py will import the event.json for the input and the app.py for the lambda function. This is the main test function which you need to run in your platform. The essay you'll input can be editted in the event.json.
+```
