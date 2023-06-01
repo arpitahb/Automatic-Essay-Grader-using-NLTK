@@ -12,9 +12,9 @@
     padding: 30px;
     color: #5262dc;
    }
-   .prompt{
+   #prompt{
     padding:10px;
-    background-color: white;
+    background-color: rgb(247, 244, 244);
     border-radius: 10px;
     height:15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -35,7 +35,7 @@
    }
    .rightcolumn {
     width: 25%;
-    height:150px;
+    height:100px;
     background-color:white;
     padding-left: 20px;
     margin-left: 20px;

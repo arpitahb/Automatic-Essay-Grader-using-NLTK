@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Project-6th Semester</title>
     <link rel="stylesheet" href="adminstyle.css">
+    <script src="adminscript.js"></script>
+    
 </head>
 <body>
     <div class="header">
     <h1 class="title">Automatic Essay Grader</h1>
+    <div class="display1">
+        <h2 class="label">Enter the writing prompt</h2>
+        <textarea id="textbox" placeholder="Write your writing prompt here"></textarea>
+    </div>
+    <div class="display2">
+        <h2 class="label2">Enter the Time Limit</h2>
+        <textarea id="timelimit" placeholder="Enter time limit"></textarea>
+
+    </div>
     <div>
-        <div>
-            <label for="prompt" type="text" value="Enter a Writing Prompt"></label>
-                <input type="text"  id="time">
-        </div>
-        
-            
-                <div class="rightcolumn">
-                <label for="time" type="time" value="Set Time Limit" class="label1"></label>
-                <input type="time" id="time">
-    </div></div>
+        <input type="button" onclick="navigateToDestination()" value="Done" class="button1">
+    </div>
     
 </body>
 </html>

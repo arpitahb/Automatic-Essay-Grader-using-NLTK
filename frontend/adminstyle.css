@@ -17,11 +17,51 @@
     color: rgb(246, 238, 238);
   }
 
-  label{
-    font-size: 25px;
-    color:rgb(246, 238, 238);
+  .display1{
+    display:flex;
   }
-   
+  .label{
+    flex:1;
+    width:35%;
+    height:20px;
+    color:white;
+  }
+  #textbox{
+    width:65%;
+    height:20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .display2{
+    display:flex;
+    padding:30px;
+  }
+  .label2{
+    flex:1;
+    width:35%;
+    height:20px;
+    color:white;
+  }
+  #timelimit{
+    width:65%;
+    height:10px;
+    padding: 20px;
+    
+  }
+  .button1{
+    background-color:#5262dc ;
+    color:rgb(246, 238, 238) ;
+    padding: 10px 20px;
+    border: ridge;
+    border-color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-size: 20px;
+  }
+  .button1:hover
+  {
+    background-color: #2f44e2;
+  }
    
 
     
