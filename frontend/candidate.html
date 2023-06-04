@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Project-6th Semester</title>
     <link rel="stylesheet" href="candidate.css">
+    <script src="./candidatescript.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<!-- <body>
     <div class="header">
     <h1>Automatic Essay Grader</h1>
     <div id="prompt" >
@@ -15,7 +16,7 @@
 
     </div>
     <div class="textcontainer">
-        <textarea class="textbox" placeholder="Write your essay here"></textarea>
+        <textarea class="textbox" placeholder="Write your essay here" ></textarea>
     
             <div class="rightcolumn">
                 <p>Click on Button below to submit your essay</p>
@@ -26,5 +27,37 @@
     </div>
     
 
-</body>
+</body> -->
+<body>
+    <div class="header">
+        <h1>Automatic Essay Grader</h1>
+        <div id="prompt" >
+             
+    
+        </div>
+        <!-- <div class="textcontainer"> -->
+            <form id="myForm" class="textcontainer">
+                <label for="message">Message:</label>
+                <textarea id="textbox" placeholder="Write your essay here" ></textarea>
+                <br>
+                
+             
+            
+        
+                <div class="rightcolumn">
+                    <p>Click on Button below to submit your essay</p>
+                    
+                    <input type="submit" value="Grade your Essay" class="button1">
+            
+                </div>
+            </form>
+       
+        <!-- </div> --> 
+   
+    </div>
+    <div id="response"></div>
+  
+    <script src="./candidatescript.js"></script>
+  </body>
+  
 </html>

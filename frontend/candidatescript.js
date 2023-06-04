@@ -1,11 +1,57 @@
+
 document.addEventListener("DOMContentLoaded", function() {
     getprompt();
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+      
+      event.preventDefault(); // Prevent form submission
+      console.log("hhhh");
+      var message = document.getElementById('textbox').value;
+      console.log(message);
+      // Send the request using fetch
+      fetch('http://127.0.0.1:3000', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: message })
+      })
+      .then(function(response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Error: ' + response.status);
+        }
+      })
+      .then(function(data) {
+        document.getElementById('response').innerHTML = data.score;
+      })
+      .catch(function(error) {
+        document.getElementById('response').innerHTML = error.message;
+      });
+    });
   });
 
 function getprompt() {
     const urlParams = new URLSearchParams(window.location.search);
     const textarea1Value = urlParams.get('textarea1Value');
-    document.getElementById("prompt").textContent = decodeURIComponent(textarea1Value);
+    const textarea2Value = urlParams.get('counter');
+    console.log(textarea2Value);
+    // document.getElementById("prompt").textContent = decodeURIComponent(textarea1Value);
+      let min=parseInt(textarea2Value,10)
+      let sec=0
+      console.log(min);
+    function run(){
+      sec-=1;
+      if(sec<=0){
+        min-=1;
+        sec=59;
+      }
+      document.getElementById("prompt").textContent=`TOPIC : ${textarea1Value} ------------ TIMER: ${min} : ${sec}`;
+    }
+    setInterval(run,1000);
+
+    
   }
 
   
+ 
