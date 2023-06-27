@@ -1,4 +1,4 @@
-# Automatic-Essay-Grader-using-NLTK
+# Attomatic-Essay-Grader-using-NLTK
  ## Table of Content
  + [Dataset Explaing](#data)
  + [Preprocessing](#prep)

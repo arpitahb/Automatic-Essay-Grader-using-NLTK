@@ -1,9 +1,5 @@
-
+from flask import Flask,request,render_template,url_for,jsonify
 import json
-
-
-
-
 
 import site
 import numpy as np
@@ -95,24 +91,43 @@ def convertToVec(text):
         return str(round(preds[0][0]))
         pass
 
-def lambda_handler(event, context):
+# def lambda_handler(event, context):
 
-    try:
-        result = convertToVec(event['body'])
-        return {
-            'statusCode': 200,
-            'body': json.dumps({'SCORE': result})
-            # 'headers': {'Content-Type': 'application/json'}
+#     try:
+#         result = convertToVec(event['body'])
+#         return {
+#             'statusCode': 200,
+#             'body': json.dumps({'SCORE': result})
+#             # 'headers': {'Content-Type': 'application/json'}
 
-        }
-    except Exception as e:
-        return {
-            'statusCode': 500,
-            'body': json.dumps({'error': str(e)})
-        }
-
-
+#         }
+#     except Exception as e:
+#         return {
+#             'statusCode': 500,
+#             'body': json.dumps({'error': str(e)})
+#         }
 
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+app = Flask(__name__)
+
+
+@app.route('/', methods=['POST'])
+def create_task():
+    K.clear_session()
+    final_text = request.get_json("text")["text"]
+    score = convertToVec(final_text)
+    K.clear_session()
+    return jsonify({'score': score}), 201
+
+
+if __name__ == '__main__':
+     app.run(debug=True)
+# app = Flask(__name__)
+
+# @app.route('/', methods=['POST'])
+# def create_task():
+#     K.clear_session()
+#     final_text = request.get_json("text")["text"]
+#     score = convertToVec(final_text)
+#     K.clear_session()
+#     return jsonify({'score': score}), 201
