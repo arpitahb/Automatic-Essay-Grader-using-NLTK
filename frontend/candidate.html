@@ -8,37 +8,15 @@
     <link rel="stylesheet" href="candidate.css">
     <script src="./candidatescript.js" crossorigin="anonymous"></script>
 </head>
-<!-- <body>
+ <body>
     <div class="header">
     <h1>Automatic Essay Grader</h1>
     <div id="prompt" >
-         
-
     </div>
-    <div class="textcontainer">
-        <textarea class="textbox" placeholder="Write your essay here" ></textarea>
-    
-            <div class="rightcolumn">
-                <p>Click on Button below to submit your essay</p>
-                <input type="button" onclick="" value="Grade your Essay" class="button1">
-        
-            </div>
-    
-    </div>
-    
-
-</body> -->
-<body>
-    <div class="header">
-        <h1>Automatic Essay Grader</h1>
-        <div id="prompt" >
-             
-    
-        </div>
-        <!-- <div class="textcontainer"> -->
+</body> 
             <form id="myForm" class="textcontainer">
-                <label for="message">Message:</label>
-                <textarea id="textbox" placeholder="Write your essay here" ></textarea>
+                <label for="message">ESSAY: </label>
+                <textarea id="textbox" placeholder="Write your essay here" rows="30" cols="80" ></textarea>
                 <br>
                 
              
@@ -50,13 +28,14 @@
                     <input type="submit" value="Grade your Essay" class="button1">
             
                 </div>
+                <div id="response">
+                    Score: 
+                </div>
+
             </form>
        
-        <!-- </div> --> 
-   
-    </div>
-    <div id="response"></div>
-  
+
+
     <script src="./candidatescript.js"></script>
   </body>
   

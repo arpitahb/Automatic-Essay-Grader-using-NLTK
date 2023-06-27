@@ -5,23 +5,27 @@
  body {
      font-family: Arial;
      padding: 50px;
-     background: white;
+     background: rgb(186, 235, 248);
+     
    }
 
    .header{
     padding: 30px;
-    color: #5262dc;
+    color: #49800e;
    }
    #prompt{
     padding:10px;
-    background-color: rgb(247, 244, 244);
+
+    font-weight: bolder;
+    background-color: rgb(254, 247, 157);
     border-radius: 10px;
     height:15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: black
+    color: rgb(48, 1, 24)
    }
    .textcontainer{
     display:flex;
+    color: #5262dc;
    }
    .textbox{
     flex:1;
@@ -39,25 +43,45 @@
     background-color:white;
     padding-left: 20px;
     margin-left: 20px;
-    color: rgb(6, 6, 6);
+    color: rgb(6, 137, 137);
     font-size: 20px;
     border-radius: 5px;
     border:ridge;
     border-color: #5262dc;
+    align-items: center;
+
 
 }
 .button1{
     background-color:#5262dc ;
     color:rgb(246, 238, 238) ;
-    padding: 10px 10px;
+    padding: 10px 20px;
     border: ridge;
     border-radius: 4px;
     transition: background-color 0.3s;
     font-size: 20px;
+    align-items: center;
   }
   .button1:hover
   {
     background-color: #2f44e2;
   }
    
-   
+#response{
+  font-size: 20px;
+  font-weight: bold;
+  margin: 1rem;
+  border: 3px solid darkblue;
+  border-radius: 1rem;
+  width: 400px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+  
+form{
+  padding: 2rem;
+  font-style: italic;
+}

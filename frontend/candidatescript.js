@@ -1,10 +1,13 @@
 
+var stopflag = false
 document.addEventListener("DOMContentLoaded", function() {
+
     getprompt();
     document.getElementById('myForm').addEventListener('submit', function(event) {
       
+      stopflag=true
       event.preventDefault(); // Prevent form submission
-      console.log("hhhh");
+      
       var message = document.getElementById('textbox').value;
       console.log(message);
       // Send the request using fetch
@@ -19,11 +22,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (response.ok) {
           return response.json();
         } else {
+        
           throw new Error('Error: ' + response.status);
         }
       })
       .then(function(data) {
-        document.getElementById('response').innerHTML = data.score;
+        console.log(data)
+        document.getElementById('response').innerHTML ="Score:" +data.score;
       })
       .catch(function(error) {
         document.getElementById('response').innerHTML = error.message;
@@ -48,9 +53,9 @@ function getprompt() {
       }
       document.getElementById("prompt").textContent=`TOPIC : ${textarea1Value} ------------ TIMER: ${min} : ${sec}`;
     }
-    setInterval(run,1000);
+    if(stopflag!=true){
+    setInterval(run,1000);}
 
-    
   }
 
   
